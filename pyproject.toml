@@ -6,14 +6,14 @@ build-backend = "setuptools.build_meta"
 name = "edgefedsim"
 version = "0.1.0"
 authors = [
-  { name="Your Name", email="you@example.com" },
+  { name="Hossein Ahmadpanah", email="h.ahmadpanah@iau.ac.ir" },
 ]
 description = "A simulator for federated learning in edge-cloud environments."
 readme = "README.md"
 requires-python = ">=3.8"
+license = { file = "LICENSE" } # Assumes you have a LICENSE file (e.g., with MIT license text)
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
     "Topic :: System :: Distributed Computing",
@@ -24,9 +24,17 @@ dependencies = [
     "numpy==1.23.5",
     "python-louvain==0.16",
     "tabulate==0.9.0",
-    "pyyaml"  # Add pyyaml, it is used in utils.py
+    "pyyaml"
 ]
 
 [project.urls]
 Homepage = "https://github.com/ahmadpanah/EdgeFedSim"
 Issues = "https://github.com/ahmadpanah/EdgeFedSim/issues"
+
+# --- Add the section below ---
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = { find = { where = ["src"] } }
+
+[tool.setuptools.package-data]
+edgefedsim = ["*.yaml"]
