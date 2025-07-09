@@ -5,7 +5,7 @@ import networkx as nx
 import numpy as np
 import time
 from collections import defaultdict
-from utils import *
+from edgefedsim.utils import *
 
 class BaseScheduler:
     """Abstract base class for all schedulers."""

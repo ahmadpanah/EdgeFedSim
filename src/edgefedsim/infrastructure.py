@@ -1,7 +1,7 @@
 # infrastructure.py
 
 import simpy
-from utils import *
+from edgefedsim.utils import *
 
 class Network:
     """Models the network connecting clusters."""

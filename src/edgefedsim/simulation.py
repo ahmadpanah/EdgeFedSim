@@ -5,10 +5,10 @@ import numpy as np
 import networkx as nx
 from collections import defaultdict
 
-from application import Workflow
-from utils import *
-from infrastructure import Federation
-from scheduler import CerebrumScheduler, NetworkAwareHeuristicScheduler, FLBlockScheduler
+from src.edgefedsim.application import Workflow
+from edgefedsim.utils import *
+from edgefedsim.infrastructure import Federation
+from edgefedsim.scheduler import CerebrumScheduler, NetworkAwareHeuristicScheduler, FLBlockScheduler
 
 class Simulation:
     def __init__(self, env, scheduler_class, policy='balanced'):

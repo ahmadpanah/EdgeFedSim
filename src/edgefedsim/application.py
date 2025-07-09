@@ -2,7 +2,7 @@
 
 import networkx as nx
 import numpy as np
-from utils import *
+from edgefedsim.utils import *
 
 class Task:
     """Models a single containerized task."""

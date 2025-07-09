@@ -5,9 +5,9 @@ import numpy as np
 import random
 from tabulate import tabulate
 
-from simulation import Simulation
-from scheduler import CerebrumScheduler, NetworkAwareHeuristicScheduler, FLBlockScheduler
-from utils import *
+from edgefedsim.simulation import Simulation
+from edgefedsim.scheduler import CerebrumScheduler, NetworkAwareHeuristicScheduler, FLBlockScheduler
+from edgefedsim.utils import *
 
 def run_experiment(scheduler_class, policy=None):
     """Runs a single simulation experiment for a given scheduler."""
