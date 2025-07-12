@@ -1,3 +1,4 @@
+
 from edgefedsim.schedulers.abstract_scheduler import AbstractScheduler
 
 class NetworkAwareScheduler(AbstractScheduler):
@@ -29,4 +30,4 @@ class NetworkAwareScheduler(AbstractScheduler):
             best_node = max(target_nodes, key=lambda node: node.power_model.available_mips)
             placements.append((task, best_node))
 
-        return placements```
+        return placements

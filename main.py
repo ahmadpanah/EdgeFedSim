@@ -46,3 +46,15 @@ if __name__ == "__main__":
 
     print("\n\n--- Overall Comparison ---")
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
+
+# Ensure CSV is written only after all experiments are finished
+import csv, os, sys
+csv_path = os.path.abspath("results.csv")
+try:
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(headers)
+        writer.writerows(table_data)
+    print(f"\nResults saved to {csv_path}")
+except Exception as e:
+    print(f"\nFailed to write results to CSV: {e}", file=sys.stderr)

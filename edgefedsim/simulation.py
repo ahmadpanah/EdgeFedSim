@@ -5,7 +5,7 @@ import numpy as np
 import networkx as nx
 from collections import defaultdict
 
-from src.edgefedsim.application import Workflow
+from edgefedsim.application import Workflow
 from edgefedsim.utils import *
 from edgefedsim.infrastructure import Federation
 from edgefedsim.scheduler import CerebrumScheduler, NetworkAwareHeuristicScheduler, FLBlockScheduler
@@ -147,20 +147,26 @@ class Simulation:
             yield self.env.timeout(10) # Record every 10 seconds
 
     def run(self):
-        """Main simulation entry point."""
+        """Main simulation entry point. Submits workflows and waits for all to complete, with a max timeout."""
         print(f"--- Starting Simulation with {self.scheduler.name} ---")
         self.env.process(self._monitor_resources())
 
-        # Submit workflows over time
+        workflow_events = []
+        # Submit workflows over time and collect their completion events
         for i, workflow in enumerate(self.workflows_to_run):
-            self.env.process(self._execute_workflow(workflow))
+            proc = self.env.process(self._execute_workflow(workflow))
+            workflow_events.append(proc)
             # Stagger workflow arrivals
             yield self.env.timeout(np.random.exponential(WORKFLOW_ARRIVAL_RATE))
-        
-        # Run until all processes are done (or a max duration)
-        # This part needs careful handling. We wait for all workflows to finish.
-        # This is a simplification; a real system runs continuously.
-        # For this experiment, we assume we run until the generated workflows are done.
+
+        # Wait for all workflows to complete, or until sim_duration is reached
+        completion = self.env.all_of(workflow_events)
+        timeout = self.env.timeout(SIM_DURATION)
+        result = yield self.env.any_of([completion, timeout])
+        if timeout in result:
+            print(f"\nSimulation stopped after reaching max duration ({SIM_DURATION} seconds). Some workflows may not have finished.")
+        else:
+            print("\nAll workflows completed.")
         
     def print_results(self):
         num_completed = len(self.completed_workflows)

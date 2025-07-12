@@ -22,9 +22,9 @@ infrastructure:
   edge_node_cost_per_hour: 0.0
 
 workflow:
-  num_workflows: 200
-  min_tasks: 20
-  max_tasks: 100
+  num_workflows: 20
+  min_tasks: 5
+  max_tasks: 15
   task_cpu_req_range: [0.5, 2.0]
   task_mem_req_range: [0.5, 2.0]
   task_base_runtime_range: [5, 20]
