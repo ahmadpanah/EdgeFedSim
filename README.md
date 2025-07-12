@@ -21,13 +21,18 @@ The simulator is designed to assess the performance of different schedulers base
 
 ## Installation
 
-1.  **Clone the repository:**
+1.  **Install from PyPI (recommended):**
+    ```bash
+    pip install edgefedsim
+    ```
+
+2.  **Clone the repository (for development):**
     ```bash
     git clone https://github.com/ahmadpanah/EdgeFedSim.git
     cd EdgeFedSim
     ```
 
-2.  **Install the required Python packages:**
+    **Install the required Python packages:**
     It is recommended to use a virtual environment.
     ```bash
     python -m venv venv
