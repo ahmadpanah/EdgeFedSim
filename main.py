@@ -10,14 +10,12 @@ from edgefedsim.scheduler import CerebrumScheduler, NetworkAwareHeuristicSchedul
 from edgefedsim.utils import *
 
 def run_experiment(scheduler_class, policy=None):
-    """Runs a single simulation experiment for a given scheduler."""
     random.seed(RANDOM_SEED)
     np.random.seed(RANDOM_SEED)
-    
     env = simpy.Environment()
     sim = Simulation(env, scheduler_class, policy=policy)
-    env.run() # The simulation runs until all generated workflows are processed
-    
+    env.process(sim.run())  # <-- ADD THIS LINE
+    env.run() 
     return sim.print_results()
 
 if __name__ == "__main__":
